@@ -100,7 +100,8 @@ public class UserRepository {
 			database.executeStatement("UPDATE user SET username = ?, password = ?, islock = ? WHERE userid = ?", 
 												   Arrays.asList(user.getUsername(), 
 																 user.getPassword(),
-																 user.isLock()));
+																 user.isLock(),
+																 user.getUserId()));
 			isSuccess = true;
 		}catch(Exception ex) {
 			ex.printStackTrace();
