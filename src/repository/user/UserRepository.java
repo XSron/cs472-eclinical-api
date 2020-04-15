@@ -97,11 +97,18 @@ public class UserRepository {
 	public boolean updateUserById(User user) {
 		boolean isSuccess = false;
 		try {
-			database.executeStatement("UPDATE user SET username = ?, password = ?, islock = ? WHERE userid = ?", 
+			if(user.getPassword().isBlank())
+				database.executeStatement("UPDATE user SET username = ?, islock = ? WHERE userid = ?", 
 												   Arrays.asList(user.getUsername(), 
 																 user.getPassword(),
 																 user.isLock(),
 																 user.getUserId()));
+			else
+				database.executeStatement("UPDATE user SET username = ?, password = ?, islock = ? WHERE userid = ?", 
+						   Arrays.asList(user.getUsername(), 
+										 user.getPassword(),
+										 user.isLock(),
+										 user.getUserId()));
 			isSuccess = true;
 		}catch(Exception ex) {
 			ex.printStackTrace();
