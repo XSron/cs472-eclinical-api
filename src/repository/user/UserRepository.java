@@ -100,7 +100,6 @@ public class UserRepository {
 			if(user.getPassword().isBlank())
 				database.executeStatement("UPDATE user SET username = ?, islock = ? WHERE userid = ?", 
 												   Arrays.asList(user.getUsername(), 
-																 user.getPassword(),
 																 user.isLock(),
 																 user.getUserId()));
 			else
