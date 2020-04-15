@@ -13,17 +13,17 @@ public class Database {
 	private PreparedStatement statement = null;
 	private static Database database;
 	// JDBC driver name and database URL
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-    static final String DB_URL = "jdbc:mysql://localhost/eclinical";
+    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";  
+    static final String DB_URL = "jdbc:mysql://localhost/eclinical?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "xsronsocheata";
+    static final String PASS = "root2019";
     
 	private Database() {}
 	public Connection getConnection() throws SQLException, ClassNotFoundException {
 		if(connection == null) {
 			//STEP 2: Register JDBC driver
-		    Class.forName("com.mysql.jdbc.Driver");
+		    Class.forName("com.mysql.cj.jdbc.Driver");
 		    //STEP 3: Open a connection
 		    connection = (Connection) DriverManager.getConnection(DB_URL,USER,PASS);
 		}

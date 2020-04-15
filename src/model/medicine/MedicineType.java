@@ -9,6 +9,14 @@ public class MedicineType {
 		this.medicineTypeId = medicineTypeId;
 		this.medicineTypeName = medicineTypeName;
 	}
+	public MedicineType(int medicineTypeId) {
+		super();
+		this.medicineTypeId = medicineTypeId;
+	}
+	public MedicineType(String medicineTypeName) {
+		super();
+		this.medicineTypeName = medicineTypeName;
+	}
 	public int getMedicineTypeId() {
 		return medicineTypeId;
 	}
