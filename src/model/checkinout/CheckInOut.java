@@ -14,6 +14,18 @@ public class CheckInOut {
 	private double charge;
 	private String description;
 	public CheckInOut() {}
+	
+	public CheckInOut(Appointment appointment, Person doctor, LocalDateTime checkInDateTime,
+			LocalDateTime checkOutDateTime, double charge, String description) {
+		super();
+		this.appointment = appointment;
+		this.doctor = doctor;
+		this.checkInDateTime = checkInDateTime;
+		this.checkOutDateTime = checkOutDateTime;
+		this.charge = charge;
+		this.description = description;
+	}
+
 	public CheckInOut(int checkInOutId, Appointment appointment, Person doctor, LocalDateTime checkInDateTime,
 			LocalDateTime checkOutDateTime, double charge, String description) {
 		super();

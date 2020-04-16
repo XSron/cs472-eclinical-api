@@ -15,6 +15,11 @@ public class Appointment {
 	private User appointedBy;
 	public Appointment() {}
 	
+	public Appointment(int appointmentId) {
+		super();
+		this.appointmentId = appointmentId;
+	}
+
 	public Appointment(LocalDate appointmentDate, LocalTime appointmentTime, Specialization specialization,
 			User appointedBy) {
 		super();
