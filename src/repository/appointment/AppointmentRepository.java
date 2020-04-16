@@ -66,6 +66,27 @@ public class AppointmentRepository {
 		}
 		return appointments;
 	}
+	public List<Appointment> loadTodayAppointments() {
+		List<Appointment> appointments = new ArrayList<>();
+		UserRepository userRepo = UserRepository.getInstance();
+		SpecializationRepository specializationRepo = SpecializationRepository.getInstance();
+		try {
+			ResultSet result = database.getResult("SELECT * FROM appointment WHERE appointmentdate = CAST(now() AS DATE)", null);
+			while(result.next()) {
+				User user = userRepo.loadUserById(result.getInt("appointedby"));
+				
+				Specialization specialization = specializationRepo.loadSpecializationById(result.getInt("specializationid"));
+				appointments.add(new Appointment(result.getInt(1), result.getString(2), 
+												 result.getDate(3).toLocalDate(), 
+												 result.getTime(4).toLocalTime(), 
+												 specialization, 
+												 user));
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return appointments;
+	}
 	public Appointment loadAppointmentById(int appointmentId) {
 		Appointment appointment = new Appointment();
 		UserRepository userRepo = UserRepository.getInstance();
