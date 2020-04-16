@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,7 @@ import model.user.UserType;
 import repository.user.UserRepository;
 
 @WebServlet("/api/usercontroller")
+@MultipartConfig
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private UserRepository userRepo = UserRepository.getInstance();
@@ -67,9 +69,15 @@ public class UserController extends HttpServlet {
 			int userid = Integer.parseInt(request.getParameter("user_id"));
 			String username = request.getParameter("username");
 			String password = request.getParameter("password");
-			UserType userType = new UserType(Integer.parseInt(request.getParameter("user_type_id")));
-			boolean islock = Integer.parseInt(request.getParameter("islock")) == 0? false: true;
-			Person person = new Person(Integer.parseInt(request.getParameter("person_id")));
+			UserType userType = new UserType();
+			if(request.getParameter("user_type_id") != null)
+				userType = new UserType(Integer.parseInt(request.getParameter("user_type_id")));
+			boolean islock = false;
+			if(request.getParameter("islock") != null)
+				islock = Integer.parseInt(request.getParameter("islock")) == 0? false: true;
+			Person person = new Person();
+			if(request.getParameter("person_id") != null)
+				person = new Person(Integer.parseInt(request.getParameter("person_id")));
 			boolean isSuccess = userRepo.updateUserById(new User(userid, username, password, islock, userType, person));
 			if(isSuccess)
 				res = new Response("succeed", 200, null);
