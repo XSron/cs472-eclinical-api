@@ -32,7 +32,7 @@ public class AppointmentRepository {
 				ResultSet result = database.getResult("SELECT IFNULL(MAX(RIGHT(appointment_number, LENGTH(appointment_number) - 3)),0) + 1 As appointment_number FROM appointment", null);
 				if(result.next())
 					appointment.setAppointmentNumber("AP#" + result.getInt("appointment_number"));
-				database.executeStatement("INSERT into appointment(appointment_number, appointmentdate, appointmenttime, specializationid, appointedby) VALUES(?, ?, ?, ?, ?)", 
+				database.executeStatement("INSERT into appointment(appointment_number, appointmentdate, appointmentime, specializationid, appointedby) VALUES(?, ?, ?, ?, ?)", 
 							Arrays.asList(appointment.getAppointmentNumber(),
 										  appointment.getAppointmentDate(),
 										  appointment.getAppointmentTime(),

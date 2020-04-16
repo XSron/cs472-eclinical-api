@@ -50,7 +50,7 @@ public class AppointmentController extends HttpServlet {
 		try {
 			LocalDate appointmentDate = LocalDate.parse(request.getParameter("appointment_date"));
 			LocalTime appointmentTime = LocalTime.parse(request.getParameter("appointment_time"));
-			Specialization specialization = new Specialization(Integer.parseInt(request.getParameter("speciatation_id")));
+			Specialization specialization = new Specialization(Integer.parseInt(request.getParameter("specialization_id")));
 			User appointedBy = new User(Integer.parseInt(request.getParameter("user_id")));
 			boolean isSuccess = appointmentRepo.saveAppointmentRepository(new Appointment(appointmentDate, appointmentTime, specialization, appointedBy));
 			if(isSuccess)
